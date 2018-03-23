@@ -29,7 +29,7 @@ export class UserListComponent implements OnInit {
       // Even if you don't do anything on error, catch to avoid a console error.
       .catch(err => {
         console.log(err);
-        this.myRouter.navigate(["/"]);
+        this.myRouter.navigate(["/login"]);
       });
       
     this.myRoute.params.subscribe(params => {
@@ -45,4 +45,28 @@ export class UserListComponent implements OnInit {
     })
     .catch()
   }
+
+  deleteThisUser(id) {
+    //console.log("ID is: ",id);
+    if (!confirm("Are you sure?")) {
+      return;
+    }
+
+    this.usersService
+      .deleteUser(id)
+      .then(() => {
+        console.log("Success");
+        this.usersService.getUsers()
+          .then((res) => {
+            this.users = res;
+          })
+      })
+      .catch(err => {
+        alert("Sorry! Something went wrong.");
+        console.log("User Delete Error");
+        console.log(err);
+      });
+  }
+
+
 }
