@@ -1,0 +1,403 @@
+<div *ngIf="isDataAvailable" class="offset-md-2 col-md-8">
+    <div class="card ">
+      <div class="card-header card-header-rose card-header-text">
+        <div class="card-text">
+          <h4 class="card-title">Property Details</h4>
+        </div>
+      </div>
+      <div class="card-body col-12">
+        <!-- <form (ngSubmit)="saveNewProperty()" #myForm="ngForm" class="form-horizontal"> -->
+        <form novalidate class="form-horizontal">
+          <div class="row">
+            <label class="col-sm-2 col-form-label">Name
+              <span style="color:red;">*</span>
+            </label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input disabled [(ngModel)]="property.name" name="name" type="text" class="form-control" required>
+                <!-- <small *ngIf="!myForm.controls.name.valid" class="text-danger"> Name is required (minimum 4 characters).</small> -->
+              </div>
+            </div>
+            <label class="col-sm-2 col-form-label">Building
+              <span style="color:red;">*</span>
+            </label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input disabled [(ngModel)]="property.building" name="building" type="text" class="form-control" required>
+                
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-2 col-form-label">Unit
+              <span style="color:red;">*</span>
+            </label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input disabled [(ngModel)]="property.unit" name="unit" type="number" class="form-control" required>
+                
+              </div>
+            </div>
+            <label class="col-sm-2 col-form-label">Street</label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input disabled [(ngModel)]="property.address.street" name="street" type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-2 col-form-label">City</label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input disabled [(ngModel)]="property.address.city" name="city" type="text" class="form-control">
+              </div>
+            </div>
+            <label class="col-sm-2 col-form-label">State</label>
+            <div class="col-sm-1">
+              <div class="form-group">
+                <input disabled [(ngModel)]="property.address.state" name="state" type="text" class="form-control">
+              </div>
+            </div>
+            <label class="col-sm-1 col-form-label">Zip</label>
+            <div class="col-sm-2">
+              <div class="form-group">
+                <input disabled [(ngModel)]="property.address.zip" name="zip" type="number" class="form-control">
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <label class="col-sm-2 col-form-label">Property status</label>
+            <div class="col-sm-10 checkbox-radios">
+              <div class="form-check d-inline-block">
+                <label class="form-check-label">
+                  <input disabled [(ngModel)]="property.isActive" name="isActive" class="form-check-input" type="checkbox"> Online
+                  <span class="form-check-sign">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          
+  
+          <label class="col-sm-2 col-form-label">Tier:</label>
+          <div class="col-sm-10 checkbox-radios">
+            <div class="form-check d-inline-block">
+              <label class="form-check-label">
+                <input disabled class="form-check-input" [(ngModel)]="property.tier" [checked]="property.tier === 'Standard'" type="radio" name="tier" value="Standard" checked> Standard
+                <span class="circle">
+                  <span class="check"></span>
+                </span>
+              </label>
+            </div>
+  
+            <div class="form-check d-inline-block pl-2">
+              <label class="form-check-label">
+                <input disabled class="form-check-input" [(ngModel)]="property.tier" [checked]="property.tier === 'Preffered'" type="radio" name="tier" value="Preffered" > Preffered
+                <span class="circle">
+                  <span class="check"></span>
+                </span>
+              </label>
+            </div>
+  
+             <div class="form-check d-inline-block pl-2">
+              <label class="form-check-label">
+                <input disabled class="form-check-input" [(ngModel)]="property.tier" [checked]="property.tier === 'Elite'" type="radio" name="tier" value="Elite" > Elite
+                <span class="circle">
+                  <span class="check"></span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+  
+  
+          <hr>
+          <div class="row">
+            <label class="col-sm-2 col-form-label">Bedrooms:</label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input disabled [(ngModel)]="property.floor_plan" name="floor_plan" type="number" class="form-control">
+              </div>
+            </div>
+            <label class="col-sm-2 col-form-label">Bathrooms</label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input disabled [(ngModel)]="property.bathrooms" name="bathrooms" type="number" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-2 col-form-label">Max occupancy:</label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input disabled [(ngModel)]="property.max_occupancy" name="max_occupancy" type="number" class="form-control">
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div>
+  
+            <div>
+              <div *ngFor="let bedroom of property.bedrooms; let i = index;" class="row">
+                <label class="col-sm-2 col-form-label">
+                  Room type:
+                </label>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <select disabled [(ngModel)]="bedroom.bedroom_type"  name="bedroom_type{{i}}"  class="form-control col-sm-12" data-style="btn select-with-transition"
+                      title="Choose size">
+                      <option disabled> Choose Room</option>
+                      <option value="Master" >Master</option>
+                      <option value="Guest">Guest</option>
+                      <option value="Media">Media</option>
+                      <option value="Living">Living</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+                <label class="col-sm-2 col-form-label">Bed sizes:</label>
+                <div class="form-inline col-sm-4">
+                  <select disabled [(ngModel)]="bedroom.bedsize1" name="bedsize1{{i}}" class="form-control col-sm-2" data-style="btn select-with-transition" title="Choose size"
+                    data-size="9">
+                    <option disabled> Choose Size</option>
+                    <option value="King">King </option>
+                    <option value="Queen">Queen</option>
+                    <option value="Twin">Twin</option>
+                  </select>
+                  <select disabled [(ngModel)]="bedroom.bedsize2" name="bedsize2{{i}}" class="form-control offset-sm-1 col-sm-2" data-style="btn select-with-transition"
+                    title="Choose size" data-size="9">
+                    <option disabled> Choose Size</option>
+                    <option value="King">King </option>
+                    <option value="Queen">Queen</option>
+                    <option value="Twin">Twin</option>
+                  </select>
+                  <select disabled [(ngModel)]="bedroom.bedsize3" name="bedsize3{{i}}" class="form-control offset-sm-1 col-sm-2" data-style="btn select-with-transition"
+                    title="Choose size" data-size="9">
+                    <option disabled> Choose Size</option>
+                    <option value="King">King </option>
+                    <option value="Queen">Queen</option>
+                    <option value="Twin">Twin</option>
+                  </select>
+                  <select disabled [(ngModel)]="bedroom.bedsize4" name="bedsize4{{i}}" class="form-control offset-sm-1 col-sm-2" data-style="btn select-with-transition"
+                    title="Choose size" data-size="9">
+                    <option disabled> Choose Size</option>
+                    <option value="King">King </option>
+                    <option value="Queen">Queen</option>
+                    <option value="Twin">Twin</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+          <div *ngFor="let spec of property.special_instructions; let j = index;">
+            <div >
+              <div  class="row">
+                <label class="col-md-2 col-form-label">
+                  Instruction {{j+1}}:</label>
+                <div class="col-10">
+                  <textarea disabled [(ngModel)]="spec.instruction" name="instruction{{j}}" class="form-control bg-light" rows="2"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div>
+            <div class="row">
+              <label class="col-md-2 col-form-label">
+                Comments:</label>
+              <div class="col-10">
+                <textarea disabled [(ngModel)]="property.comments" name="comments" class="form-control bg-light" rows="4"></textarea>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <label class="col-sm-2 col-form-label">Effective Date
+              <span style="color:red;">*</span>
+            </label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <!-- <input [(ngModel)]=" property.effective_date | date:'yyyy-MM-dd' " (ngModelChange)="property.effective_date=$event" name="effective_date" type="date" class="form-control" required> -->
+                <input [ngModel]=" property.effective_date | date:'yyyy-MM-dd' " (ngModelChange)="property.effective_date=$event" name="effective_date" type="date" class="form-control" disabled>
+                <!-- <small *ngIf="!myForm.controls.effective_date.valid" class="text-danger"> The effective date is required.</small> -->
+              </div>
+            </div>
+            <label class="col-sm-2 col-form-label">End Date
+              <br>(optional) </label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <!-- <input [(ngModel)]="property.end_date" name="end_date" type="date" class="form-control"> -->
+                <input  [ngModel]=" property.end_date | date:'yyyy-MM-dd' " name="end_date" type="date" class="form-control" disabled>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="errorMessage" class="row">
+            <small>{{errorMessage}}</small>
+          </div>
+          <div class="row">
+            <div class="col-sm-2 float-left">
+              <button [routerLink]="['/properties']" type="submit" class="btn btn-fill btn-default">Back</button>
+            </div>
+            <div class="offset-sm-8 col-sm-2 float-right">
+              <button [routerLink]="['/properties', property._id, 'edit']" type="submit" class="btn btn-fill btn-rose" >Edit </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div *ngIf="isDataAvailable" class="offset-md-3 col-md-6">
+    <div class="card ">
+        <div class="card-header card-header-rose card-header-text">
+          <div class="card-text">
+            <h4 class="card-title">Property Details</h4>
+          </div>    
+        </div>
+        
+        <div class="card-body col-12">
+          
+             <div class="row">
+              <label class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input [(ngModel)]="property.name" name="name" type="text" class="form-control" disabled>
+                </div>
+              </div>
+              <label class="col-sm-2 col-form-label">Building</label>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input [(ngModel)]="property.building" name="building" type="text" class="form-control" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-2 col-form-label">Unit</label>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input [(ngModel)]="property.unit" name="unit" type="number" class="form-control" disabled>
+                </div>
+              </div>
+              <label class="col-sm-2 col-form-label">Street</label>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input [(ngModel)]="property.address.street"  name="street" type="text" class="form-control" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              
+              <label class="col-sm-2 col-form-label">City</label>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input [(ngModel)]="property.address.city" name="city" type="text" class="form-control" disabled>
+                </div>
+              </div>
+              <label class="col-sm-2 col-form-label">State</label>
+              <div class="col-sm-1">
+                <div class="form-group">
+                  <input [(ngModel)]="property.address.state" name="state" type="text" class="form-control" disabled>
+                </div>
+              </div>
+              <label class="col-sm-1 col-form-label">Zip</label>
+              <div class="col-sm-2">
+                <div class="form-group">
+                  <input [(ngModel)]="property.address.zip" name="zip" type="number" class="form-control" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-2 col-form-label">Property status</label>
+              <div class="col-sm-10 checkbox-radios">
+                <div class="form-check d-inline-block">
+                  <label class="form-check-label">
+                    <input [(ngModel)]="property.isActive" name="status" class="form-check-input" type="checkbox" disabled> Online
+                    <span class="form-check-sign">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Bedrooms:</label>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                    <input [(ngModel)]="property.floor_plan" name="bedrooms" type="number" class="form-control" disabled>
+                    </div>
+                </div>
+                <label class="col-sm-2 col-form-label">Bathrooms</label>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                    <input [(ngModel)]="property.bathrooms" name="bathrooms" type="number" class="form-control" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Max occupancy:</label>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                    <input [(ngModel)]="property.max_occupancy" name="max_occupancy" type="number" class="form-control" disabled>
+                    </div>
+                </div>
+            </div>
+             <hr>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Effective Date</label>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                        <input [ngModel]=" property.effective_date | date:'yyyy-MM-dd' " (ngModelChange)="property.effective_date=$event" name="effective_date" type="date" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <label class="col-sm-2 col-form-label">End Date <br>(optional) </label>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                        <input [ngModel]=" property.end_date | date:'yyyy-MM-dd' " name="end_date" type="date" class="form-control" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="errorMessage" class="row"> <small>{{errorMessage}}</small> </div>
+                <div class="row">
+                    <div class="col-sm-2 float-left"><button [routerLink]="['/properties']" type="submit" class="btn btn-fill btn-default">Back</button></div> 
+                    <label class="col-sm-10 col-form-label float-left">Last updated on: {{property.updatedAt | date: 'short'}} </label>
+                </div>
+                <div class="row">
+                    
+                </div>
+        </div>
+      </div> 
+   </div> -->

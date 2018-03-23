@@ -1,0 +1,337 @@
+<div class="offset-md-2 col-md-8">
+  <div class="card ">
+      <div class="card-header card-header-rose card-header-text">
+        <div class="card-text">
+          <h4 class="card-title">Create User</h4>
+        </div>
+      </div>
+      <div class="card-body ">
+        <form (ngSubmit)="saveNewUser()" #myForm="ngForm" class="form-horizontal">
+           <div class="row">
+            <label class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input [(ngModel)]="user.email" name="email" value="{{ user.email}}" type="email" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-2 col-form-label">First Name</label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input [(ngModel)]="user.name.first" name="firstname" value="{{ user.name.first }}" type="text" class="form-control">
+              </div>
+            </div>
+            <label class="col-sm-2 col-form-label">Last Name</label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input [(ngModel)]="user.name.last" name="lastname" value="{{ user.name.last }}" type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input [(ngModel)]="user.encryptedPassword" name="password" value="{{ user.encryptedPassword }}" placeholder="********" type="password" class="form-control">
+              </div>
+            </div>
+            <label class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input [(ngModel)]="user.phone" name="phone" value="{{ user.phone }}" type="number" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-2 col-form-label">Profile status</label>
+            <div class="col-sm-10 checkbox-radios">
+              <div class="form-check d-inline-block">
+                <label class="form-check-label">
+                  <input [checked]="user.status" [(ngModel)]="user.status" name="status" class="form-check-input" type="checkbox" value=""> Active user
+                  <span class="form-check-sign">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+                  <label class="col-sm-2 col-form-label">Department</label>
+                  <div class="col-sm-10 checkbox-radios">
+                    <div class="form-check d-inline-block">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="user.department" [checked]="user.department === 'Housekeeping'" type="radio" name="departmentRadios" value="Housekeeping" checked> Housekeeping
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+
+                    <div class="form-check d-inline-block pl-2">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="user.department" [checked]="user.department === 'Maintenance'" type="radio" name="departmentRadios" value="Maintenance" checked> Maintenance
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+
+                     <div class="form-check d-inline-block pl-2">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="user.department" [checked]="user.department === 'Front Desk'" type="radio" name="departmentRadios" value="Front Desk" checked> Front Desk
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+
+                     <div class="form-check d-inline-block pl-2">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="user.department" [checked]="user.department === 'Owner Relation'" type="radio" name="departmentRadios" value="Owner Relations" checked> Owner Relations
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+
+                     <div class="form-check d-inline-block pl-2">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="user.department" [checked]="user.department === 'Executive'" type="radio" name="departmentRadios" value="Executive" checked> Executive
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+
+                    <div class="form-check d-inline-block pl-2">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="user.department" [checked]="user.department === 'None'" type="radio" name="departmentRadios" value="None" checked> None
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">User Access</label>
+                  <div class="col-sm-10 checkbox-radios">
+                    <div class="form-check d-inline-block">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="user.access" [checked]="user.access === 'Admin'" type="radio" name="accessRadios" value="Admin" checked> Admin
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+
+                    <div class="form-check d-inline-block pl-2">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="user.access" [checked]="user.access === 'Executive'" type="radio" name="accessRadios" value="Executive" checked> Executive
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+
+                     <div class="form-check d-inline-block pl-2">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="user.access" [checked]="user.access === 'Employee'" type="radio" name="accessRadios" value="Employee" checked> Employee
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                
+                  </div>
+                </div>
+
+                <div class="row">
+                      <label class="col-sm-2 col-form-label">Position</label>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <input [(ngModel)]="user.position" name="position" value="{{ user.position }}" type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="card-footer col-sm-4">
+                        <button [routerLink]="['/dashboard']" type="submit" class="btn btn-fill btn-default">Cancel</button>  
+                        <button type="submit" class="btn btn-fill btn-rose">Save  </button>
+                      </div>
+                 </div>
+        </form>
+      </div>
+    </div> 
+ </div>
+
+
+
+<!-- <div class="offset-md-2 col-md-8">
+        <form (ngSubmit)="doTheUpdate(user._id, myForm)" #myForm="ngForm">
+            <div class="card ">
+                <div class="card-header card-header-rose card-header-text">
+                  <div class="card-text">
+                    <h4 class="card-title">Create User</h4>
+                  </div>
+                </div>
+                <div class="card-body ">
+                  <form method="get" action="/" class="form-horizontal">
+                     <div class="row">
+                      <label class="col-sm-2 col-form-label">Last Name</label>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <input [(ngModel)]="updatedUser.email" name="email" value="{{ user.email }}" type="email" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-sm-2 col-form-label">First Name</label>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <input [(ngModel)]="updatedUser.name.first" name="firstname" value="{{ user.name.first }}" type="text" class="form-control">
+                        </div>
+                      </div>
+                      <label class="col-sm-2 col-form-label">Last Name</label>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <input [(ngModel)]="updatedUser.name.last" name="lastname" value="{{ user.name.last }}" type="text" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-sm-2 col-form-label">Password</label>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <input [(ngModel)]="updatedUser.password" name="password" value="{{ user.password }}" placeholder="********" type="text" class="form-control">
+                        </div>
+                      </div>
+                      <label class="col-sm-2 col-form-label">Phone</label>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <input [(ngModel)]="updatedUser.phone" name="phone" value="{{ user.phone }}" type="number" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-sm-2 col-form-label">Profile status</label>
+                      <div class="col-sm-10 checkbox-radios">
+                        <div class="form-check d-inline-block">
+                          <label class="form-check-label">
+                            <input [checked]="user.status" class="form-check-input" type="checkbox" value=""> Active user
+                            <span class="form-check-sign">
+                              <span class="check"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                            <label class="col-sm-2 col-form-label">Department</label>
+                            <div class="col-sm-10 checkbox-radios">
+                              <div class="form-check d-inline-block">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" [checked]="user.department === 'Housekeeping'" type="radio" name="departmentRadios" value="Housekeeping" checked> Housekeeping
+                                  <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+
+                              <div class="form-check d-inline-block pl-2">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" [checked]="user.department === 'Maintenance'" type="radio" name="departmentRadios" value="Maintenance" checked> Maintenance
+                                  <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+
+                               <div class="form-check d-inline-block pl-2">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" [checked]="user.department === 'Front Desk'" type="radio" name="departmentRadios" value="Front Desk" checked> Front Desk
+                                  <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+
+                               <div class="form-check d-inline-block pl-2">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" [checked]="user.department === 'Owner Relation'" type="radio" name="departmentRadios" value="Owner Relations" checked> Owner Relations
+                                  <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+
+                               <div class="form-check d-inline-block pl-2">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" [checked]="user.department === 'Executive'" type="radio" name="departmentRadios" value="Executive" checked> Executive
+                                  <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+
+                              <div class="form-check d-inline-block pl-2">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" [checked]="user.department === 'None'" type="radio" name="departmentRadios" value="None" checked> None
+                                  <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+                          
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <label class="col-sm-2 col-form-label">User Access</label>
+                            <div class="col-sm-10 checkbox-radios">
+                              <div class="form-check d-inline-block">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" [checked]="user.access === 'Admin'" type="radio" name="accessRadios" value="Housekeeping" checked> Admin
+                                  <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+
+                              <div class="form-check d-inline-block pl-2">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" [checked]="user.access === 'Executive'" type="radio" name="accessRadios" value="Maintenance" checked> Executive
+                                  <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+
+                               <div class="form-check d-inline-block pl-2">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" [checked]="user.access === 'Employee'" type="radio" name="accessRadios" value="Front Desk" checked> Employee
+                                  <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+                          
+                            </div>
+                          </div>
+
+                          <div class="row">
+                                <label class="col-sm-2 col-form-label">Position</label>
+                                <div class="col-sm-4">
+                                  <div class="form-group">
+                                    <input [(ngModel)]="updatedUser.position" name="position" value="{{ user.position }}" type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="card-footer col-sm-4">
+                                    <button type="submit" class="btn btn-fill btn-rose">Save</button>
+                                </div>
+                           </div>
+                  </form>
+                </div>
+              </div>
+            </form> 
+           </div> -->

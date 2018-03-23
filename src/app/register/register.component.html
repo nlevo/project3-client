@@ -1,0 +1,105 @@
+<!-- <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-centered">
+            <div class="card" >
+                <div class="row d-flex justify-content-center">
+                    <a class="btn btn-success card-header col-md-5" [routerLink]="['/']">Login</a>
+                    <a class="btn btn-success card-header active col-md-5" [routerLink]="['/signup']">Signup</a>
+                </div>
+                <div class="card-content">
+                    <form (ngSubmit)="doSignUp()" #f="ngForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Email address</label>
+                                    <input [(ngModel)]="signUpInfo.email" name="email" type="email" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Phone number</label>
+                                    <input [(ngModel)]="signUpInfo.phone" name="phone" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Password</label>
+                                    <input type="password"  [(ngModel)]="signUpInfo.password" name="password" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success pull-right">Sign Up<i style="padding-left: 1em" class="material-icons right">send</i></button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<div class="wrapper wrapper-full-page">
+        <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('../../assets/img/login.jpg'); background-size: cover; background-position: top center;">
+          <div class="container">
+            <div class="col-md-4 col-sm-6 ml-auto mr-auto">
+              <form class="form" (ngSubmit)="doSignUp()" #f="ngForm" novalidate >
+                <div class="card card-login">
+                  <div class="card-header card-header-rose text-center">
+                    <h4 class="card-title">Register</h4>
+                  </div>
+                  <div class="card-body "> 
+                    <span class="bmd-form-group">
+                    </span>
+                    <span class="bmd-form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">email</i>
+                          </span>
+                        </div>
+                        <input [(ngModel)]="signUpInfo.email"  name="email" type="email" class="form-control" placeholder="Email...">
+                      </div>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">phone</i>
+                          </span>
+                        </div>
+                        <input [(ngModel)]="signUpInfo.phone"  name="phone" type="number" class="form-control" placeholder="Phone...">
+                      </div>
+                    </span>
+                    <span class="bmd-form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">lock_outline</i>
+                          </span>
+                        </div>
+                        <input [(ngModel)]="signUpInfo.password" name="password" type="password" class="form-control" placeholder="Password...">
+                      </div>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            {{errorMessage}}
+                          </span>
+                        </div>
+                        
+                      </div>
+                    </span>
+                  </div>
+                  <div class="card-footer justify-content-center">
+                    <button type="submit" class="btn btn-rose btn-md">REGISTER</button>
+                    <!-- <a role="button" class="btn btn-rose btn-md" [routerLink]="['/signup']">REGISTER</a> -->
+                    <a role="button" class="btn btn-rose btn-link btn-lg" [routerLink]="['/']">LOGIN</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>

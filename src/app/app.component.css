@@ -1,0 +1,14 @@
+.col-centered{
+    float: none !important;
+    margin: 0 auto !important;
+}
+
+body {
+    /* background-image:url('../../src/assets/img/login-background.jpeg'); */
+    /* background: url(../../src/assets/img/login-background.jpeg) no-repeat center center fixed; 
+    background-size: cover; */
+}
+
+.container-fluid {
+
+}
