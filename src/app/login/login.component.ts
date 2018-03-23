@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       .checklogin()
       // If success, we are logged in.
       .then(resultFromApi => {
-        this.myRouter.navigate(["/dashboard"]);
+        this.myRouter.navigate(["/properties"]);
       })
 
       // Even if you don't do anything on error, catch to avoid a console error.
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
         this.errorMessage = "";
 
         // redirect to /phones
-        this.myRouter.navigate(["/dashboard"]);
+        this.myRouter.navigate(["/properties"]);
       })
       .catch(err => {
         const parsedError = err.json();

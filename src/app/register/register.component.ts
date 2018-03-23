@@ -18,7 +18,20 @@ export class SignupComponent implements OnInit {
     password:"",
     phone: ""
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.myAuth
+    .checklogin()
+    // If success, we are logged in.
+    .then(resultFromApi => {
+      this.myRouter.navigate(["/properties"]);
+    })
+
+    // Even if you don't do anything on error, catch to avoid a console error.
+    .catch(err => {
+      console.log(err);
+    });
+
+  }
 
   doSignUp() {
     this.myAuth
@@ -31,7 +44,7 @@ export class SignupComponent implements OnInit {
         this.errorMessage = "";
 
         // redirect to /phones
-        this.myRouter.navigate(["/dashboard"]);
+        this.myRouter.navigate(["/properties"]);
       })
       .catch(err => {
         const parsedError = err.json();
