@@ -35,9 +35,8 @@ const routes: Routes = [
   { path: 'properties/:id', component: PropertyDetailsComponent},
   { path: 'properties/:id/edit', component: PropertyEditComponent},
   { path: 'signup', component: SignupComponent},
-  { path: 'dashboard', component: DashboardComponent},
   { path: 'logout', redirectTo: ''},
-  { path: '', component: LoginComponent},
+  { path: 'login', component: LoginComponent},
 
   { path: '**', redirectTo: 'dashboard'}
   

@@ -1,2 +1,5 @@
 
-   <app-dashboard></app-dashboard>
+   <app-dashboard *ngIf="_router.url !== '/login' && _router.url !== '/signup' "></app-dashboard>
+   <router-outlet *ngIf="_router.url === '/login' || _router.url === '/signup' "></router-outlet>
+
+   

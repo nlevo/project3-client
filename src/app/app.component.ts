@@ -10,7 +10,7 @@ import { AuthService } from "./services/authentification-service.service";
 })
 export class AppComponent {
   router;
-  constructor(private _router: Router, private myAuthService: AuthService ) {
+  constructor(public _router: Router, private myAuthService: AuthService ) {
     this.router = _router;
   }
 
