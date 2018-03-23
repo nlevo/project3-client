@@ -20,7 +20,7 @@ export class UserCreateComponent implements OnInit {
       access: "",
       email: "",
       encryptedPassword: "",
-      status: "",
+      status: false,
       name: {first: "", last: ""}
   }
 
@@ -77,7 +77,7 @@ export class UserCreateComponent implements OnInit {
         access: "",
         email: "",
         encryptedPassword: "",
-        status: "",
+        status: false,
         name: {first: "", last: ""}
       }
       this.saveError = "";
